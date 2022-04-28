@@ -36,7 +36,7 @@ public class DataSetOperation
                 select new FileInfo
                 {
                     filename = dr["Column1"].ToString(),
-                    category = dr["Column5"].ToString()
+                    category = dr["Column5"].ToString().Replace(" ","")
                 }
                 );
         return currentTasks.ToList();
