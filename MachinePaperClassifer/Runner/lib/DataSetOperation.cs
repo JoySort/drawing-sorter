@@ -19,7 +19,7 @@ public class DataSetOperation
 
     }
 
-    public static List<string> generateSourcePDFInfo(DataTable table)
+    public static List<FileInfo> generateSourcePDFInfo(DataTable table)
     {
         
         
@@ -27,15 +27,27 @@ public class DataSetOperation
         excludeValue.Add(null);
         excludeValue.Add("");
         excludeValue.Add("零件号");
-        var row = table
-            .Select("Column5 not like '%外购%' ");
+        var rows = table
+            .Select("Column5 not like '%外购%' and Column1 is not null and Column1 not like '%零件号%'");
             
-        var fileList = row.Select(dataRow => dataRow.Field<string>("Column1")).ToList()
-            .Except(excludeValue).ToList().Select(value=>value+".pdf").ToList();
-        return fileList;
+       // var fileList = rows.Select(dataRow => dataRow.Field<string>("Column1")).ToList()
+        //    .Except(excludeValue).ToList().Select(value=>value+".pdf").ToList();
+        var currentTasks = (from DataRow dr in rows
+                select new FileInfo
+                {
+                    filename = dr["Column1"].ToString(),
+                    category = dr["Column5"].ToString()
+                }
+                );
+        return currentTasks.ToList();
     }
 
-    
+    public class FileInfo
+    {
+        public string filename;
+        public string category;
+    }
+
     private static string originPath = "../";
     public static string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty,originPath);
     

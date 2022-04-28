@@ -23,17 +23,17 @@ foreach (var targetModel in targetModels)
         var sheet = dataSet.Tables[0];
         var sourcePdfFileList = DataSetOperation.generateSourcePDFInfo(sheet);
         var targetPdfFilePath = DataSetOperation.generatePDFDesinationPath(targetModel);
-        foreach (var pdfFileName in sourcePdfFileList)
+        foreach (var pdfInfo in sourcePdfFileList)
         {
-            Directory.CreateDirectory(targetPdfFilePath);
+            Directory.CreateDirectory(targetPdfFilePath +  "/"+ pdfInfo.category);
             string sourcePDFPath = DataSetOperation.path+"/二维PDF/";
             try
             {
-                File.Copy(sourcePDFPath + "/" + pdfFileName, targetPdfFilePath + "/" + pdfFileName,true);
+                File.Copy(sourcePDFPath + "/" + pdfInfo.filename+".pdf", targetPdfFilePath +  "/"+ pdfInfo.category+ "/" + pdfInfo.filename+".pdf",true);
             }
             catch (FileNotFoundException exception)
             {
-                Console.WriteLine("在信息文档"+files.Replace(DataSetOperation.path,"")+"找不到文件："+pdfFileName);
+                Console.WriteLine("在信息文档"+files.Replace(DataSetOperation.path,"")+"找不到文件："+pdfInfo.filename);
             }
         }
 
