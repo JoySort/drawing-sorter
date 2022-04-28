@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ExcelDataReader" Version="3.7.0-develop00310" />
+      <PackageReference Include="ExcelDataReader.DataSet" Version="3.7.0-develop00310" />
+      <PackageReference Include="IronXL.Excel" Version="2022.3.0" />
+      <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0-preview.3.22175.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Dockerfile" />
+      <None Remove=".dockerignore" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="obj\Debug\net6.0\apphost" />
+      <Content Include="obj\Debug\net6.0\refint\Runner.dll" />
+      <Content Include="obj\Debug\net6.0\ref\Runner.dll" />
+      <Content Include="obj\Debug\net6.0\Runner.AssemblyInfoInputs.cache" />
+      <Content Include="obj\Debug\net6.0\Runner.assets.cache" />
+      <Content Include="obj\Debug\net6.0\Runner.csproj.AssemblyReference.cache" />
+      <Content Include="obj\Debug\net6.0\Runner.csproj.CopyComplete" />
+      <Content Include="obj\Debug\net6.0\Runner.csproj.CoreCompileInputs.cache" />
+      <Content Include="obj\Debug\net6.0\Runner.csproj.FileListAbsolute.txt" />
+      <Content Include="obj\Debug\net6.0\Runner.dll" />
+      <Content Include="obj\Debug\net6.0\Runner.GeneratedMSBuildEditorConfig.editorconfig" />
+      <Content Include="obj\Debug\net6.0\Runner.genruntimeconfig.cache" />
+      <Content Include="obj\Debug\net6.0\Runner.pdb" />
+      <Content Include="obj\project.assets.json" />
+      <Content Include="obj\project.nuget.cache" />
+      <Content Include="obj\project.packagespec.json" />
+      <Content Include="obj\Release\net6.0\apphost" />
+      <Content Include="obj\Release\net6.0\refint\Runner.dll" />
+      <Content Include="obj\Release\net6.0\ref\Runner.dll" />
+      <Content Include="obj\Release\net6.0\Runner.AssemblyInfoInputs.cache" />
+      <Content Include="obj\Release\net6.0\Runner.assets.cache" />
+      <Content Include="obj\Release\net6.0\Runner.csproj.AssemblyReference.cache" />
+      <Content Include="obj\Release\net6.0\Runner.csproj.CopyComplete" />
+      <Content Include="obj\Release\net6.0\Runner.csproj.CoreCompileInputs.cache" />
+      <Content Include="obj\Release\net6.0\Runner.csproj.FileListAbsolute.txt" />
+      <Content Include="obj\Release\net6.0\Runner.dll" />
+      <Content Include="obj\Release\net6.0\Runner.GeneratedMSBuildEditorConfig.editorconfig" />
+      <Content Include="obj\Release\net6.0\Runner.genruntimeconfig.cache" />
+      <Content Include="obj\Release\net6.0\Runner.pdb" />
+      <Content Include="obj\rider.project.restore.info" />
+      <Content Include="obj\Runner.csproj.nuget.dgspec.json" />
+      <Content Include="obj\Runner.csproj.nuget.g.props" />
+      <Content Include="obj\Runner.csproj.nuget.g.targets" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+      <Compile Include="obj\Debug\net6.0\Runner.AssemblyInfo.cs" />
+      <Compile Include="obj\Debug\net6.0\Runner.GlobalUsings.g.cs" />
+      <Compile Include="obj\Release\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+      <Compile Include="obj\Release\net6.0\Runner.AssemblyInfo.cs" />
+      <Compile Include="obj\Release\net6.0\Runner.GlobalUsings.g.cs" />
+    </ItemGroup>
+
+</Project>
