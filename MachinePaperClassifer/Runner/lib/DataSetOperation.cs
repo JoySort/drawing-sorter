@@ -214,7 +214,31 @@ public class DataSetOperation
 
         }
         
-        var ls = overallCsv.Where(x => x.category.Contains("购")).Select(value => value.content);
+        var purchaseList = overallCsv.Where(x => x.category.Contains("购"));
+        var distinctDrawingNoList = purchaseList.GroupBy(value => value.drawingNo);
+        var aggregatedList = new List<CSVHolder>();
+        foreach (var csvHolderList in distinctDrawingNoList)
+        {
+            var csvHolderTmp = new CSVHolder();
+            csvHolderTmp.drawingNo = csvHolderList.Key;
+            csvHolderTmp.category = "";
+            csvHolderTmp.className = "";
+            csvHolderTmp.drawingNoPath = "";
+            csvHolderTmp.count = 0;
+            foreach (var csvHolder in csvHolderList)
+            {
+                csvHolderTmp.category =  csvHolder.category;
+                csvHolderTmp.className = csvHolderTmp.className +" | "+ csvHolder.className +"*"+ csvHolder.count;
+                csvHolderTmp.drawingNoPath = csvHolderTmp.drawingNoPath  +" | "+  csvHolder.drawingNoPath;
+                csvHolderTmp.count = csvHolderTmp.count + csvHolder.count;
+                
+                
+            }
+            aggregatedList.Add(csvHolderTmp);
+
+        }
+        var ls =  aggregatedList.Select(value => value.content);
+        //
         var tp = targetDetailFilePath + "/" ;
         Directory.CreateDirectory(tp);
         File.WriteAllLines(tp+"外购总表"+".csv", ls,Encoding.UTF8);
@@ -330,7 +354,7 @@ public class CSVHolder
     public string drawingNo;
     public string category;
     public int count;
-    public string content => $"{className},{drawingNo},{category},{count},{drawingNoPath}";
+    public string content => $"{drawingNo},{count},{category},{className},{drawingNoPath}";
     public string drawingNoPath;
 }
 
